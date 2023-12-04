@@ -49,5 +49,4 @@ public class FileAuthService implements AuthService {
 	public String hashPassword(String password) {
 		return DigestUtils.md5Hex(password).toUpperCase();
 	}
-
 }
