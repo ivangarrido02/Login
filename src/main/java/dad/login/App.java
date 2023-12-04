@@ -16,7 +16,7 @@ public class App extends Application {
 
         Scene scene = new Scene(controller.getView());
 
-        primaryStage.setTitle("Login.fxml");
+        primaryStage.setTitle("Login FXML");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

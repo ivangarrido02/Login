@@ -19,23 +19,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class LoginController implements Initializable {
-	@FXML
-	private VBox view;
 	
 	@FXML
-	private Button AccederButton;
+	private Button accederButton;
 
 	@FXML
-	private Button CancelarButton;
+	private Button cancelarButton;
 
 	@FXML
-	private PasswordField ContraText;
+	private PasswordField contraText;
 
 	@FXML
 	private CheckBox LdapCheck;
 
 	@FXML
-	private TextField UsuarioText;
+	private TextField usuarioText;
+	
+	@FXML
+	private VBox view;
 
 	private LoginModel model = new LoginModel();
 	private AuthService authService;
@@ -53,15 +54,14 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		
-		UsuarioText.textProperty().bindBidirectional(model.usuarioProperty());
-		ContraText.textProperty().bindBidirectional(model.contraProperty());	
-		LdapCheck.selectedProperty().bindBidirectional(model.ldapProperty());	
-		AccederButton.setOnAction(e -> login());
-		CancelarButton.setOnAction(e -> cancelar());
-	
+		usuarioText.textProperty().bindBidirectional(model.usuarioProperty());
+		contraText.textProperty().bindBidirectional(model.contraseñaProperty());
+		LdapCheck.selectedProperty().bindBidirectional(model.ldapProperty());
+		accederButton.setOnAction(e -> login());
+		cancelarButton.setOnAction(e -> cancelar());
+
 	}
-	
+
 	public void login() {
 		boolean autenticado = false;
 
@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
 			authService = new FileAuthService();
 
 		try {
-			autenticado = authService.login(model.getUsuario(), model.getContra());
+			autenticado = authService.login(model.getUsuario(), model.getContraseña());
 		} catch (Exception e) {
 			autenticacionIncorrecta();
 		}
@@ -88,7 +88,6 @@ public class LoginController implements Initializable {
 		alert.setTitle("Iniciar sesión");
 		alert.setHeaderText("Acceso permitido");
 		alert.setContentText("Las creedenciales de acceso son válidas");
-
 		alert.showAndWait();
 	}
 
@@ -96,15 +95,14 @@ public class LoginController implements Initializable {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Iniciar sesión");
 		alert.setHeaderText("Acceso denegado");
-		alert.setContentText("El usuario y/o la contraseña no son válido");
-
+		alert.setContentText("El usuario y/o la contraseña son incorrectas");
 		alert.showAndWait();
 	}
 
 	public void cancelar() {
 		System.exit(0);
 	}
-	
+
 	public VBox getView() {
 		return view;
 	}
