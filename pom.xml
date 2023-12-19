@@ -7,9 +7,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
+	<exec.mainClass>/Login/src/main/java/dad/login/Main.java</exec.mainClass>
 		<maven.compiler.target>15</maven.compiler.target>
 		<maven.compiler.source>15</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<exec.mainClass>dad.login.Main</exec.mainClass>
 	</properties>
 
 	<dependencies>
